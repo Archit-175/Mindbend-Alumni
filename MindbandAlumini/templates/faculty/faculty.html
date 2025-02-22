@@ -24,9 +24,11 @@
             justify-content: center;
             gap: 20px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
         .faculty-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 15px;
             width: 300px;
@@ -45,6 +47,19 @@
             height: 100px;
             background: rgba(0, 0, 0, 0.1);
             border-radius: 50%;
+        }
+        .faculty-card::after {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 30px;
+            height: 75px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 2px, transparent 2px);
+            background-size: 15px 15px;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: -1;
         }
         .faculty-card:hover {
             transform: translateY(-10px);
@@ -65,6 +80,15 @@
             font-size: 14px;
             color: #666;
         }
+        @media (max-width: 768px) {
+            .faculty-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .faculty-card {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -72,17 +96,24 @@
     <div class="faculty-container">
         <div class="faculty-card">
             <img src="ritu-tiwari.jpg" alt="Faculty" class="faculty-img">
-            <div class="faculty-name">Dr. Rajesh Mehta</div>
+            <div class="faculty-name">Dr. Ritu Tiwari</div>
             <div class="faculty-details">PhD in AI & ML</div>
             <div class="faculty-details">HOD, Artificial Intelligence</div>
             <div class="faculty-details">Alumni Committee: Technical</div>
         </div>
         <div class="faculty-card">
             <img src="Praveen_picture.jpg" alt="Faculty" class="faculty-img">
-            <div class="faculty-name">Prof. Anjali Sharma</div>
+            <div class="faculty-name">Prof. Praveen Kumar</div>
             <div class="faculty-details">M.Tech in Data Science</div>
             <div class="faculty-details">Department of AI</div>
             <div class="faculty-details">Alumni Committee: Cultural</div>
+        </div>
+        <div class="faculty-card">
+            <img src="pruthwikSir.jpg" alt="Faculty" class="faculty-img">
+            <div class="faculty-name">Prof. Pruthwik Mishra</div>
+            <div class="faculty-details">PhD in Natural Language Processing</div>
+            <div class="faculty-details">Department of AI</div>
+            <div class="faculty-details">Alumni Committee: Managerial</div>
         </div>
     </div>
 </body>
