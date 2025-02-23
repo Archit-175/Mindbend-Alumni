@@ -1,11 +1,6 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindbend Alumni - Ecogenesis Legacy</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+{% block css %}
     <style>
         /* Base styles */
         * {
@@ -32,7 +27,7 @@
 
         .header h1 {
             font-size: 2.5rem;
-            color: #64ffda;
+            color: #59bcdd;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 0.5rem;
@@ -63,8 +58,8 @@
         .filter-btn {
             padding: 0.7rem 1.2rem;
             background: transparent;
-            border: 1px solid #64ffda;
-            color: #64ffda;
+            border: 1px solid #59bcdd;
+            color: #59bcdd;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 4px;
@@ -148,7 +143,7 @@
         /* Content styles */
         .alumni-name {
             font-size: 1.4rem;
-            color: #64ffda;
+            color: #59bcdd;
             margin-bottom: 0.5rem;
             text-align: center;
         }
@@ -214,7 +209,7 @@
         }
 
         .social-link:hover {
-            color: #64ffda;
+            color: #59bcdd;
             transform: translateY(-2px);
         }
 
@@ -228,7 +223,7 @@
         }
 
         .alumni-info-overlay::-webkit-scrollbar-thumb {
-            background: #64ffda;
+            background: #59bcdd;
             border-radius: 2px;
         }
 
@@ -252,8 +247,8 @@
             }
         }
     </style>
-</head>
-<body>
+{% endblock css %}
+{% block content %}
     <header class="header">
         <h1>Mindbend Alumni</h1>
         <p>Pioneers of Innovation & Sustainability</p>
@@ -270,6 +265,9 @@
 
     <div class="alumni-grid" id="alumniGrid"></div>
 
+{% endblock content %}
+
+{% block js %}
     <script>
         const alumniData = [
             {
@@ -390,5 +388,5 @@
         // Initial render
         renderAlumniCards();
     </script>
-</body>
-</html>
+    
+{% endblock js %}
