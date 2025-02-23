@@ -1,0 +1,394 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindbend Alumni - Ecogenesis Legacy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #050b15;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        .header {
+            background: rgba(5, 11, 21, 0.95);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #64ffda;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #8892b0;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .eco-subtitle {
+            color: #4CAF50;
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+
+        /* Filter section */
+        .filter-section {
+            padding: 1rem;
+            background: rgba(5, 11, 21, 0.8);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.2rem;
+            background: transparent;
+            border: 1px solid #64ffda;
+            color: #64ffda;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+        }
+
+        /* Alumni grid */
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Alumni card */
+        .alumni-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 2/3;
+            background: #0a1929;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .alumni-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .alumni-card:hover .alumni-image {
+            transform: scale(1.05);
+        }
+
+        /* Basic info overlay (always visible) */
+        .alumni-basic-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(5, 11, 21, 0.95) 40%, rgba(5, 11, 21, 1));
+            transition: opacity 0.3s ease;
+        }
+
+        .alumni-card:hover .alumni-basic-info {
+            opacity: 0;
+        }
+
+        /* Full info overlay (on hover) */
+        .alumni-info-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 11, 21, 0.95);
+            padding: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .alumni-card:hover .alumni-info-overlay {
+            opacity: 1;
+        }
+
+        /* Content styles */
+        .alumni-name {
+            font-size: 1.4rem;
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .alumni-year {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .alumni-role {
+            color: #4CAF50;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .alumni-contribution {
+            color: #ccd6f6;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .testimonial {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #8892b0;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(8, 17, 32, 0.6);
+            border-radius: 8px;
+            border-left: 3px solid #4CAF50;
+        }
+
+        .eco-impact {
+            color: #4CAF50;
+            font-size: 0.85rem;
+            text-align: center;
+            margin: 1rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        /* Social links */
+        .social-links {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        .social-link {
+            color: #8892b0;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #64ffda;
+            transform: translateY(-2px);
+        }
+
+        /* Scrollbar styling */
+        .alumni-info-overlay::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .alumni-info-overlay::-webkit-scrollbar-track {
+            background: rgba(8, 17, 32, 0.6);
+        }
+
+        .alumni-info-overlay::-webkit-scrollbar-thumb {
+            background: #64ffda;
+            border-radius: 2px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .alumni-grid {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .alumni-info-overlay {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Mindbend Alumni</h1>
+        <p>Pioneers of Innovation & Sustainability</p>
+        <div class="eco-subtitle">ECOGENESIS</div>
+    </header>
+
+    <div class="filter-section">
+        <button class="filter-btn active" data-year="all">All Years</button>
+        <button class="filter-btn" data-year="2023">2023</button>
+        <button class="filter-btn" data-year="2022">2022</button>
+        <button class="filter-btn" data-year="2021">2021</button>
+        <button class="filter-btn" data-year="2020">2020</button>
+    </div>
+
+    <div class="alumni-grid" id="alumniGrid"></div>
+
+    <script>
+        const alumniData = [
+            {
+                name: "Archit Savaliya",
+                year: "2023",
+                role: "Sustainability Director",
+                image: "{% static "archit.jpg" %}",
+                contribution: "Pioneered zero-waste initiatives and implemented renewable energy solutions for event infrastructure",
+                testimonial: "Leading Mindbend's green initiatives showed me how technology and sustainability can work in harmony.",
+                ecoImpact: "Reduced event carbon footprint by 40%",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            },
+            {
+                name: "Arshad Khatib",
+                year: "2022",
+                role: "Green Tech Lead",
+                image:" {% static "arshad.jpg" %}",
+                contribution: "Developed smart recycling systems and organized eco-innovation challenges",
+                testimonial: "Mindbend was the perfect platform to showcase how engineering can solve environmental challenges.",
+                ecoImpact: "Launched 3 sustainable tech projects",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            },
+            {
+                name: "Aryan Jain",
+                year: "2021",
+                role: "Eco-Innovation Head",
+                image: "{% static "aryan.jpg" %}",
+                contribution: "Created partnerships with environmental organizations and led green hackathons",
+                testimonial: "The experience of merging technology with environmental consciousness shaped my career path.",
+                ecoImpact: "Engaged 1000+ students in eco-projects",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            },
+            {
+                name: "Bhaskar Sahu",
+                year: "2020",
+                role: "Environmental Outreach",
+                image: "{% static "bhaskar.jpg" %}",
+                contribution: "Organized climate awareness workshops and sustainable technology exhibitions",
+                testimonial: "Mindbend gave me the platform to promote environmental consciousness through technology.",
+                ecoImpact: "Led 15+ environmental workshops",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            }
+        ];
+
+        function createAlumniCard(alumni) {
+            return `
+                <div class="alumni-card" data-year="${alumni.year}">
+                    <img src="${alumni.image}" alt="${alumni.name}" class="alumni-image">
+                    
+                    <div class="alumni-basic-info">
+                        <h2 class="alumni-name">${alumni.name}</h2>
+                        <p class="alumni-year">Batch of ${alumni.year}</p>
+                        <p class="alumni-role">${alumni.role}</p>
+                    </div>
+
+                    <div class="alumni-info-overlay">
+                        <h2 class="alumni-name">${alumni.name}</h2>
+                        <p class="alumni-year">Batch of ${alumni.year}</p>
+                        <p class="alumni-role">${alumni.role}</p>
+                        <p class="alumni-contribution">${alumni.contribution}</p>
+                        <p class="testimonial">${alumni.testimonial}</p>
+                        <p class="eco-impact">🌱 ${alumni.ecoImpact}</p>
+                        <div class="social-links">
+                            <a href="${alumni.social.linkedin}" class="social-link" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="${alumni.social.twitter}" class="social-link" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="${alumni.social.github}" class="social-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAlumniCards(year = 'all') {
+            const grid = document.getElementById('alumniGrid');
+            grid.innerHTML = '';
+            
+            const filteredAlumni = year === 'all' 
+                ? alumniData 
+                : alumniData.filter(alumni => alumni.year === year);
+            
+            filteredAlumni.forEach(alumni => {
+                grid.innerHTML += createAlumniCard(alumni);
+            });
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                e.target.classList.add('active');
+                
+                const year = e.target.dataset.year;
+                renderAlumniCards(year);
+            });
+        });
+
+        // Initial render
+        renderAlumniCards();
+    </script>
+</body>
+</html>
