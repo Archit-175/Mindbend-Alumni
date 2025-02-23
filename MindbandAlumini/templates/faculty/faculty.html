@@ -7,12 +7,15 @@
     <title>Faculty Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&family=Poppins:wght@100..900&display=swap');
+
         body {
-            background-color: #f5f5f5;
-            font-family: Arial, sans-serif;
+            background: #050b15;
+            color: #fff;
+            min-height: 100vh;
+            font-family: 'Nunito Sans', sans-serif;
         }
         .header {
             background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -30,313 +33,181 @@
             flex-wrap: wrap;
         }
         .faculty-card {
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+            position: relative;
+        }
+        .faculty-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .faculty-card:hover .faculty-inner {
+            transform: rotateY(180deg) scale(1.075);
+        }
+        .faculty-front, .faculty-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
             text-align: center;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
         }
-        .faculty-card::before {
-            content: "";
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 100px;
-            height: 100px;
-            background: rgba(0, 38, 255, 0.16);
-            border-radius: 50%;
-        }
-        .faculty-card::after {
-            content: "";
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            width: 30px;
-            height: 75px;
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 2px, transparent 2px);
-            background-size: 15px 15px;
-            opacity: 0.5;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .faculty-card:hover {
-            transform: translateY(-10px);
-        }
-        .faculty-card:hover .faculty-img {
-            border: 3px solid #2574fc82;
-            box-shadow: 0 0 16px #196bf982;
-            transition:  .75s;
+        .faculty-back {
+            transform: rotateY(180deg);
         }
         .faculty-img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #2574fc82;
-            transition: .75s;
+            border: 4px solid #2574fc;
+        }
+        .faculty-content {
+            text-align: center;
+            margin-top: 10px;
         }
         .faculty-name {
             font-size: 20px;
             font-weight: bold;
-            margin-top: 10px;
         }
         .faculty-details {
             font-size: 14px;
-            color: #454545;
-            font-family: 'Nunito Sans', serif;
+            color: #cfcfcf;
         }
-        @media (max-width: 768px) {
-            .faculty-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .faculty-card {
-                width: 90%;
-            }
-        }
-        [Previous CSS remains exactly the same until .alumni-card]
-
-        .alumni-card {
-            background: rgba(8, 17, 32, 0.95);
-            border-radius: 15px;
-            padding: 0;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 3/4;
-        }
-
-        .alumni-image-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .alumni-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: none;
-            padding: 0;
-            margin: 0;
-            transition: transform 0.3s ease;
-        }
-
-        .alumni-info-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 11, 21, 0.95);
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-            transform: translateY(10px);
-            overflow-y: auto;
-        }
-
-        .alumni-card:hover .alumni-info-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .alumni-basic-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(5, 11, 21, 0.9) 30%, rgba(5, 11, 21, 1));
-            transition: all 0.3s ease;
-        }
-
-        .alumni-card:hover .alumni-basic-info {
-            opacity: 0;
-        }
-
-        .alumni-name {
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            color: #64ffda;
-        }
-
-        .alumni-year {
-            text-align: center;
-            color: #8892b0;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .alumni-role {
-            text-align: center;
+        .faculty-committee {
+            font-size: 15px;
             font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #4CAF50;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .alumni-contribution {
+            color: #00bfff;
+            position: absolute;
+            bottom: 15px; /* Sticks to the bottom */
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            line-height: 1.6;
-            color: #ccd6f6;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            width: 100%;
         }
-
-        .testimonial {
+        .email {
+            font-size: 13px;
+            color: #ffcc00;
+            position: absolute;
+            bottom: 15px; /* Sticks to the bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+        }
+        .quote {
             font-style: italic;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(8, 17, 32, 0.9);
-            border-radius: 10px;
-            color: #8892b0;
-            position: relative;
-            font-size: 0.9rem;
-        }
-
-        .eco-impact {
-            margin-top: 1rem;
-            text-align: center;
-            color: #4CAF50;
-            font-size: 0.85rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: auto;
-            padding-top: 1rem;
-        }
-
-        .social-link {
-            color: #8892b0;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
             color: #64ffda;
-            transform: translateY(-3px);
+            font-size: 13px;
+            margin-bottom: 40px; /* Pushes email downward */
         }
-
-        /* Custom scrollbar for overlay */
-        .alumni-info-overlay::-webkit-scrollbar {
-            width: 6px;
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
-
-        .alumni-info-overlay::-webkit-scrollbar-track {
-            background: rgba(8, 17, 32, 0.9);
+        .social-icons a {
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
         }
-
-        .alumni-info-overlay::-webkit-scrollbar-thumb {
-            background: #64ffda;
-            border-radius: 3px;
-        }
-
-        @media (max-width: 768px) {
-            .alumni-info-overlay {
-                padding: 1rem;
-            }
-            
-            .alumni-name {
-                font-size: 1.3rem;
-            }
-            
-            .testimonial {
-                padding: 0.8rem;
-            }
+        .social-icons a:hover {
+            color: #00bfff;
         }
     </style>
 </head>
 <body>
-    [Previous header and filter-section HTML remains exactly the same]
-
-    
+    <div class="header">Faculty Incharge</div>
+    <div class="faculty-container" id="facultyContainer"></div>
 
     <script>
-        const alumniData = [Previous alumni data remains exactly the same];
+        const facultyData = [
+            {
+                name: "Dr. Ritu Tiwari",
+                year: "PhD in AI & ML",
+                role: "HOD, Artificial Intelligence",
+                position: "Technical Committee Incharge",
+                email: "ritu.tiwari@svnit.ac.in",
+                image: "{% static 'ritu-tiwari.jpg' %}",
+                quote: "Published 50+ research papers in AI. dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            },
+            {
+                name: "Prof. Praveen Kumar",
+                year: "M.Tech in Data Science",
+                role: "Department of AI",
+                position: "Cultural Committee Incharge",
+                email: "praveen.kumar@svnit.ac.in",
+                image: "{% static 'Praveen_picture.jpg' %}",
+                quote: "Organized national-level AI symposiums. lorem dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            },
+            {
+                name: "Prof. Pruthwik Mishra",
+                year: "PhD in Natural Language Processing",
+                role: "Department of AI",
+                position: "Managerial Committee Incharge",
+                email: "pruthwik.mishra@svnit.ac.in",
+                image: "{% static 'pruthwikSir.jpg' %}",
+                quote: "Developed NLP models for Indian languages. lorem dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec",
+                social: {
+                    linkedin: "#",
+                    twitter: "#",
+                    github: "#"
+                }
+            }
+        ];
 
-        function createAlumniCard(alumni) {
-            return `
-                <div class="alumni-card" data-year="${alumni.year}">
-                    <div class="alumni-image-container">
-                        <img src="${alumni.image}" alt="${alumni.name}" class="alumni-image">
-                        
-                        <div class="alumni-basic-info">
-                            <h2 class="alumni-name">${alumni.name}</h2>
-                            <p class="alumni-year">Batch of ${alumni.year}</p>
-                            <p class="alumni-role">${alumni.role}</p>
-                        </div>
+        const facultyContainer = document.getElementById("facultyContainer");
 
-                        <div class="alumni-info-overlay">
-                            <h2 class="alumni-name">${alumni.name}</h2>
-                            <p class="alumni-year">Batch of ${alumni.year}</p>
-                            <p class="alumni-role">${alumni.role}</p>
-                            <p class="alumni-contribution">${alumni.contribution}</p>
-                            <p class="testimonial">${alumni.testimonial}</p>
-                            <p class="eco-impact">🌱 ${alumni.ecoImpact}</p>
-                            <div class="social-links">
-                                <a href="${alumni.social.linkedin}" class="social-link" target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="${alumni.social.twitter}" class="social-link" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="${alumni.social.github}" class="social-link" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
+        facultyData.forEach(faculty => {
+            facultyContainer.innerHTML += `
+                <div class="faculty-card">
+                    <div class="faculty-inner">
+                        <div class="faculty-front">
+                            <img src="${faculty.image}" alt="Faculty" class="faculty-img">
+                            <div class="faculty-content">
+                                <div class="faculty-name">${faculty.name}</div>
+                                <div class="faculty-details">${faculty.year}</div>
+                                <div class="faculty-details">${faculty.role}</div>
+                                <br>
+                                <div class="faculty-details">{other data can come here}</div>
                             </div>
+                            <div class="faculty-committee">${faculty.position}</div>
+                        </div>
+                        <div class="faculty-back">
+                            <div class="quote">“${faculty.quote}”</div>
+                            <div class="social-icons">
+                                <a href="${faculty.social.linkedin}"><i class="fab fa-linkedin"></i></a>
+                                <a href="${faculty.social.twitter}"><i class="fab fa-twitter"></i></a>
+                                <a href="${faculty.social.github}"><i class="fab fa-github"></i></a>
+                            </div>
+                            <div class="email">${faculty.email}</div>
                         </div>
                     </div>
-                </div>
-            `;
-        }
-
-        [Previous JavaScript functions remain exactly the same]
+                </div>`;
+        });
     </script>
-    </style>
-</head>
-<body>
-    
-    <div class="header">Faculty Incharge</div>
-    <div class="faculty-container">
-        <div class="faculty-card">
-            <img src={% static "ritu-tiwari.jpg" %} alt="Faculty" class="faculty-img">
-            <div class="faculty-name">Dr. Ritu Tiwari</div>
-            <div class="faculty-details">PhD in AI & ML</div>
-            <div class="faculty-details">HOD, Artificial Intelligence</div>
-            <div class="faculty-details text-primary">Technical Committee Incharge</div>
-        </div>
-        <div class="faculty-card">
-            <img src={% static "Praveen_picture.jpg"%} alt="Faculty" class="faculty-img">
-            <div class="faculty-name">Prof. Praveen Kumar</div>
-            <div class="faculty-details">M.Tech in Data Science</div>
-            <div class="faculty-details">Department of AI</div>
-            <div class="faculty-details text-primary"> Cultural Committee Incharge</div>
-        </div>
-        <div class="faculty-card">
-            <img src={% static "pruthwikSir.jpg" %} alt="Faculty" class="faculty-img">
-            <div class="faculty-name">Prof. Pruthwik Mishra</div>
-            <div class="faculty-details">PhD in Natural Language Processing</div>
-            <div class="faculty-details">Department of AI</div>
-            <div class="faculty-details text-primary">Managerial Committee Incharge</div>
-        </div>
-    </div>
 </body>
 </html>
