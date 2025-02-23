@@ -264,9 +264,11 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="alumni-grid" id="alumniGrid"></div>
+    [Previous header and filter-section HTML remains exactly the same]
+
+    
+
     <script>
         const alumniData = [Previous alumni data remains exactly the same];
 
@@ -308,5 +310,33 @@
 
         [Previous JavaScript functions remain exactly the same]
     </script>
+    </style>
+</head>
+<body>
+    
+    <div class="header">Faculty Incharge</div>
+    <div class="faculty-container">
+        <div class="faculty-card">
+            <img src={% static "ritu-tiwari.jpg" %} alt="Faculty" class="faculty-img">
+            <div class="faculty-name">Dr. Ritu Tiwari</div>
+            <div class="faculty-details">PhD in AI & ML</div>
+            <div class="faculty-details">HOD, Artificial Intelligence</div>
+            <div class="faculty-details text-primary">Technical Committee Incharge</div>
+        </div>
+        <div class="faculty-card">
+            <img src={% static "Praveen_picture.jpg"%} alt="Faculty" class="faculty-img">
+            <div class="faculty-name">Prof. Praveen Kumar</div>
+            <div class="faculty-details">M.Tech in Data Science</div>
+            <div class="faculty-details">Department of AI</div>
+            <div class="faculty-details text-primary"> Cultural Committee Incharge</div>
+        </div>
+        <div class="faculty-card">
+            <img src={% static "pruthwikSir.jpg" %} alt="Faculty" class="faculty-img">
+            <div class="faculty-name">Prof. Pruthwik Mishra</div>
+            <div class="faculty-details">PhD in Natural Language Processing</div>
+            <div class="faculty-details">Department of AI</div>
+            <div class="faculty-details text-primary">Managerial Committee Incharge</div>
+        </div>
+    </div>
 </body>
 </html>

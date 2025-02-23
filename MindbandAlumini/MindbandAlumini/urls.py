@@ -20,6 +20,7 @@ from MindbandAlumini import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index,name="home"),
     path('faculty/', include("faculty.urls")),
     path('alumini/', include("alumini.urls")),
 ]
