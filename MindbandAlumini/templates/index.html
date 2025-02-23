@@ -1,25 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindband-Alumini</title>
-    <style>
-        body{
-            background:black;
-            color:white;
-        }
-        a{
-            font-size:40px;
-            width:100%;
-            color:green;
-            test-align:center;
-        }
-    </style>
-</head>
-<body>
-    <a href="{% url "alumini_page" %}">alumini</a>
-    <br>
-    <a href="{% url "faculty_page" %}">faculty</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<style>
+    .hero {
+        no-repeat center center;
+        background-size: cover;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .hero h1 {
+        font-size: 3em;
+    }
+    .carousel {
+        display: flex;
+        overflow: hidden;
+        gap: 10px;
+        padding: 20px 0;
+    }
+    .carousel-track {
+        display: flex;
+        animation: scroll 150s linear infinite;
+    }
+    .carousel .card {
+        min-width: 200px;
+    }
+    .past-events {
+        padding: 20px;
+    }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .event_cards {
+        background-color: #333;
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: #59bcdd;
+        border-color: #59bcdd;
+        color: black;
+    }
+</style>
+
+{% endblock css %}
+
+{% block content %}
+    <div class="hero">
+        <img src="{% static 'logo.jpg' %}" alt="Mindbend Logo" style="width: 150px; height: auto;">
+        <h1 style="color: #59bcdd;">Mindbend: India's Biggest Techno-Managerial Event</h1>
+    </div>
+    <div class="past-events">
+        <h1>Events</h1>
+    </div>
+    <div class="carousel">
+        <div class="carousel-track">
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/480767325_18395718724100743_5461098234432670409_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/479176785_18395051536100743_2443692734791279822_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 2</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/478310786_18395043490100743_4088904171970758258_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 3</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/480767325_18395718724100743_5461098234432670409_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/479176785_18395051536100743_2443692734791279822_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 2</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/478310786_18395043490100743_4088904171970758258_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 3</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/480767325_18395718724100743_5461098234432670409_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/479176785_18395051536100743_2443692734791279822_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 2</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/478310786_18395043490100743_4088904171970758258_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 3</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/480767325_18395718724100743_5461098234432670409_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/479176785_18395051536100743_2443692734791279822_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 2</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/478310786_18395043490100743_4088904171970758258_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 3</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/480767325_18395718724100743_5461098234432670409_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/479176785_18395051536100743_2443692734791279822_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 2</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/478310786_18395043490100743_4088904171970758258_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 3</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/480767325_18395718724100743_5461098234432670409_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 1</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/479176785_18395051536100743_2443692734791279822_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 2</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card mx-1 event_cards" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'events/478310786_18395043490100743_4088904171970758258_n.webp' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Event 3</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+{% endblock content %}
